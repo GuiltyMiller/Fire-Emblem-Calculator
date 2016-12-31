@@ -16,12 +16,19 @@ namespace WindowsFormsApplication1
         {
             InitializeComponent();
         }
+        public bool Form2Open = false;
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (!Form2Open)
+            {
+                Form2 NewWindow = new Form2(this);
+                Form2Open = true;
+                NewWindow.Show();
+            }
+        }
 
-
-
-    }
-    public class CalculatorObjectsVariables
-    {
+        public class CalculatorObjectsVariables
+        {
             public int Level;
             public int Hp;
             public int Str;
@@ -51,64 +58,63 @@ namespace WindowsFormsApplication1
 
         }
 
-    public class Calculations
-    {
-
-
-    }
-
-
-    public class WeaponVariables
-    {
-    private string Name;
-    private int ID;
-    private static int Durability;
-    private int MT;
-    private int Hit;
-    private int Crit;
-    private int Range;
-    private int Weight;
-    private string WeaponType;
-    private bool EffectiveArmor;
-    private bool EffectiveMount;
-    private bool EffectiveDragon;
-    private bool EffectiveBeast;
-    private bool EffectiveSword;
-    private bool EffectiveAxe;
-    private bool EffectiveLance;
-    private bool Effective;
-    private int EffectiveMTBonus;
-    public int EffectiveMTBonus2;
-
-        public WeaponVariables()
+        public class Calculations
         {
-            Name = "Unknown";
-            ID = 10000;
-            Durability = 0;
-            MT = 0;
-            Hit = 0;
-            Crit = 0;
-            Range = 1;
-            Weight = 0;
-            WeaponType = "Sword";
-            EffectiveArmor = false;
-            EffectiveMount = false;
-            EffectiveDragon = false;
-            EffectiveBeast = false;
-            EffectiveSword = false;
-            EffectiveAxe = false;
-            EffectiveLance = false;
-            Effective = false;
-            EffectiveMTBonus = 0;
-            EffectiveMTBonus2 = 0;
+
+
         }
-    }
 
-    public class PersonalWeapon
-    {
-    public string Name;
-    private int ID;
-    private int Durability;
-    }
+
+        public class WeaponVariables
+        {
+            private string Name;
+            private int ID;
+            private static int Durability;
+            private int MT;
+            private int Hit;
+            private int Crit;
+            private int Weight;
+            private string WeaponType;
+            private bool EffectiveArmor;
+            private bool EffectiveMount;
+            private bool EffectiveDragon;
+            private bool EffectiveBeast;
+            private bool EffectiveSword;
+            private bool EffectiveAxe;
+            private bool EffectiveLance;
+            private bool Effective;
+            private int EffectiveMTBonus;
+            public int EffectiveMTBonus2;
+
+            public WeaponVariables()
+            {
+                Name = "Unknown";
+                ID = 10000;
+                Durability = 0;
+                MT = 0;
+                Hit = 0;
+                Crit = 0;
+                Weight = 0;
+                WeaponType = "Sword";
+                EffectiveArmor = false;
+                EffectiveMount = false;
+                EffectiveDragon = false;
+                EffectiveBeast = false;
+                EffectiveSword = false;
+                EffectiveAxe = false;
+                EffectiveLance = false;
+                Effective = false;
+                EffectiveMTBonus = 0;
+                EffectiveMTBonus2 = 0;
+            }
+        }
+
+        public class PersonalWeapon
+        {
+            public string Name;
+            private int ID;
+            private int Durability;
+        }
 
     }
+}
