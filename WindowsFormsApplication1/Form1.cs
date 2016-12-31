@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,38 +19,96 @@ namespace WindowsFormsApplication1
 
 
 
-
-
+    }
     public class CalculatorObjectsVariables
     {
-        int Level;
-        int HP;
-         
+            public int Level;
+            public int Hp;
+            public int Str;
+            public int Mag;
+            public int Skl;
+            public int Spd;
+            public int Lck;
+            public int Def;
+            public int Res;
+            public int Con;
+            public int Exp;
 
+            public CalculatorObjectsVariables()
+            {
+                Level = 1;
+                Hp = 0;
+                Str = 0;
+                Mag = 0;
+                Skl = 0;
+                Spd = 0;
+                Lck = 0;
+                Def = 0;
+                Res = 0;
+                Con = 0;
+                Exp = 0;
+            }
 
-    }
+        }
 
-
-
-    public class CharactersObjectsVariables
+    public class Calculations
     {
-        
-
 
 
     }
 
 
-
-
-
-    public class WeaponsObjectsVariables
+    public class WeaponVariables
     {
+    private string Name;
+    private int ID;
+    private static int Durability;
+    private int MT;
+    private int Hit;
+    private int Crit;
+    private int Range;
+    private int Weight;
+    private string WeaponType;
+    private bool EffectiveArmor;
+    private bool EffectiveMount;
+    private bool EffectiveDragon;
+    private bool EffectiveBeast;
+    private bool EffectiveSword;
+    private bool EffectiveAxe;
+    private bool EffectiveLance;
+    private bool Effective;
+    private int EffectiveMTBonus;
+    public int EffectiveMTBonus2;
 
+        public WeaponVariables()
+        {
+            Name = "Unknown";
+            ID = 10000;
+            Durability = 0;
+            MT = 0;
+            Hit = 0;
+            Crit = 0;
+            Range = 1;
+            Weight = 0;
+            WeaponType = "Sword";
+            EffectiveArmor = false;
+            EffectiveMount = false;
+            EffectiveDragon = false;
+            EffectiveBeast = false;
+            EffectiveSword = false;
+            EffectiveAxe = false;
+            EffectiveLance = false;
+            Effective = false;
+            EffectiveMTBonus = 0;
+            EffectiveMTBonus2 = 0;
+        }
+    }
 
-
-
+    public class PersonalWeapon
+    {
+    public string Name;
+    private int ID;
+    private int Durability;
     }
 
     }
-}
