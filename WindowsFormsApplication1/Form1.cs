@@ -61,8 +61,6 @@ namespace WindowsFormsApplication1
 
 
         #region PlayerVariables
-        public int Level;
-        public int Hp;
         public int Str;
         public int Mag;
         public int Skl;
@@ -84,7 +82,6 @@ namespace WindowsFormsApplication1
         public int ClassCritical;
         public void CalculatorVariables()
         {
-            Level = 1;
             Str = System.Convert.ToInt32(STR.Value);
             Mag = System.Convert.ToInt32(MAG.Value);
             Skl = System.Convert.ToInt32(SKL.Value);
@@ -98,7 +95,6 @@ namespace WindowsFormsApplication1
 
 
         #region EnemyVariables
-        public int eHp;
         public int eStr;
         public int eMag;
         public int eSkl;
