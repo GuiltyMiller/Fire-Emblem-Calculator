@@ -157,6 +157,18 @@ namespace WindowsFormsApplication1
             WeaponConversion();
             SupportVariables();
             #region Ally Hit Calcuations
+
+            int HitTotal = wHit + Skl * 2 + Lck / 2 + SupportBonusHit + SRankBonus;
+            #endregion
+
+
+            #region Enemy Hit Calculations
+            int eHitTotal = ewHit + eSkl * 2 + eLck / 2 + eSupportBonusHit + eSRankBonus;
+            #endregion
+
+
+            #region Evasion
+            //Ally Attack Speed
             int ATKSPD;
             int ATKSPD2 = wWeight - Con;
             if (Con >= wWeight)
@@ -167,14 +179,10 @@ namespace WindowsFormsApplication1
             {
                 ATKSPD = Spd - ATKSPD2;
             }
-            int HitTotal = (((wHit + Skl) * 2 + Lck) / 2) + SupportBonusHit + SRankBonus;
-            #endregion
-
-
-            #region Enemy Hit Calculations
+            //Enemy Attack Speed
             int eATKSPD;
-            int eATKSPD2 = wWeight - eCon;
-            if (Con >= wWeight)
+            int eATKSPD2 = ewWeight - eCon;
+            if (Con >= ewWeight)
             {
                 eATKSPD = eSpd;
             }
@@ -182,12 +190,7 @@ namespace WindowsFormsApplication1
             {
                 eATKSPD = eSpd - eATKSPD2;
             }
-            int eHitTotal = (((ewHit + eSkl) * 2 + eLck) / 2) + eSupportBonusHit + eSRankBonus;
 
-            #endregion
-
-
-            #region Evasion
             int EvasionTotal = ATKSPD * 2 + Lck + SupportBonusHit;
             int eEvasionTotal = eATKSPD * 2 + eLck + eSupportBonusHit;
             #endregion
@@ -211,19 +214,19 @@ namespace WindowsFormsApplication1
             int eDamageA;
             if (cMagic == 1)
             {
-                DamageA = Mag + (wMT + WeaponTriangleMT) * Effective + EffectiveMTBonus + SupportBonusMT;
+                DamageA = Mag + wMT + WeaponTriangleMT * Effective + EffectiveMTBonus + SupportBonusMT;
             }
             else
             {
-                DamageA = Str + (wMT + WeaponTriangleMT) * Effective + EffectiveMTBonus + SupportBonusMT;
+                DamageA = Str + wMT + WeaponTriangleMT * Effective + EffectiveMTBonus + SupportBonusMT;
             }
             if (ceMagic == 1)
             {
-                eDamageA = eMag + (ewMT + eWeaponTriangleMT) * eEffective + eEffectiveMTBonus + eSupportBonusMT;
+                eDamageA = eMag + ewMT + eWeaponTriangleMT * eEffective + eEffectiveMTBonus + eSupportBonusMT;
             }
             else
             {
-                eDamageA = eStr + (ewMT + eWeaponTriangleMT) * eEffective + eEffectiveMTBonus + eSupportBonusMT;
+                eDamageA = eStr + ewMT + eWeaponTriangleMT * eEffective + eEffectiveMTBonus + eSupportBonusMT;
             }
             #endregion
 
@@ -239,19 +242,19 @@ namespace WindowsFormsApplication1
             int eTotalDamage;
             if (cMagic == 1)
             {
-                TotalDamage = DamageA - eResistanceT;
+                TotalDamage = DamageA - eResistanceT - eWeaponTriangleMT;
             }
             else
             {
-                TotalDamage = DamageA - eDefenseT;
+                TotalDamage = DamageA - eDefenseT - eWeaponTriangleMT;
             }
             if (ceMagic == 1)
             {
-                eTotalDamage = eDamageA - ResistanceT;
+                eTotalDamage = eDamageA - ResistanceT - WeaponTriangleMT;
             }
             else
             {
-                eTotalDamage = eDamageA - DefenseT;
+                eTotalDamage = eDamageA - DefenseT - WeaponTriangleMT;
             }
             string VarDam = TotalDamage.ToString();
             Damage.Text = VarDam;
@@ -260,8 +263,8 @@ namespace WindowsFormsApplication1
             #endregion
 
             #region Critical Calculations
-            int CritA = (wCrit + (Skl / 2)) + SupportBonusCrit +  eClassCritical + SRankBonus;
-            int eCritA = (ewCrit + (eSkl / 2)) + eSupportBonusCrit + eClassCritical + eSRankBonus;
+            int CritA = wCrit + Skl / 2 + SupportBonusCrit +  eClassCritical + SRankBonus;
+            int eCritA = ewCrit + eSkl / 2 + eSupportBonusCrit + eClassCritical + eSRankBonus;
             int CritEvade = Lck + SupportBonusCritEvade;
             int eCritEvade = eLck + eSupportBonusCritEvade;
             int CritTotal = CritA - eCritEvade;
