@@ -82,6 +82,7 @@ namespace WindowsFormsApplication1
             playerweapon.WHIT = System.Convert.ToInt32(WeaponHit.Value);
             playerweapon.WCRIT = System.Convert.ToInt32(WeaponCrit.Value);
             playerweapon.WWEIGHT = System.Convert.ToInt32(WeaponWeight.Value);
+            playerweapon.EFFECTIVEMTBONUS = System.Convert.ToInt32(eWeaponMTBonus.Value);
             playerweapon.EFFECTIVE = WeaponAdvantage.Checked;
             return playerweapon;
         }
@@ -96,7 +97,7 @@ namespace WindowsFormsApplication1
             enemyweapon.WHIT = System.Convert.ToInt32(eWeaponHit.Value);
             enemyweapon.WCRIT = System.Convert.ToInt32(eWeaponCrit.Value);
             enemyweapon.WWEIGHT = System.Convert.ToInt32(eWeaponWeight.Value);
-            enemyweapon.WWEIGHT = System.Convert.ToInt32(eWeaponMTBonus.Value);
+            enemyweapon.EFFECTIVEMTBONUS = System.Convert.ToInt32(eWeaponMTBonus.Value);
             enemyweapon.EFFECTIVE = eWeaponAdvantage.Checked;
             return enemyweapon;
         }
