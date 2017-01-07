@@ -13,15 +13,11 @@ namespace WindowsFormsApplication1
     public partial class MainForm : Form
     {
         public MainForm()
-        {
-            InitializeComponent();
-        }
-
+        {InitializeComponent();}
 
         #region PlayerStatConversion
-        private StatVariables GetPlayerVariables()
-        {
-            StatVariables player = new StatVariables();
+        private Stats GetPlayerVariables()
+        {   Stats player = new Stats();
             player.Str = System.Convert.ToInt32(STR.Value);
             player.Mag = System.Convert.ToInt32(MAG.Value);
             player.Skl = System.Convert.ToInt32(SKL.Value);
@@ -30,26 +26,15 @@ namespace WindowsFormsApplication1
             player.Def = System.Convert.ToInt32(DEF.Value);
             player.Res = System.Convert.ToInt32(RES.Value);
             player.Con = System.Convert.ToInt32(CON.Value);
-            player.SupportBonusHit = System.Convert.ToInt32(SupportHit.Value);
-            player.SupportBonusMT = System.Convert.ToInt32(SupportMT.Value);
-            player.SupportBonusDEF = System.Convert.ToInt32(SupportDef.Value);
-            player.SupportBonusRES = System.Convert.ToInt32(SupportRes.Value);
-            player.SupportBonusEvade = System.Convert.ToInt32(SupportEvade.Value);
-            player.SupportBonusCrit = System.Convert.ToInt32(SupportCrit.Value);
-            player.SupportBonusCritEvade = System.Convert.ToInt32(SupportCritEvade.Value);
-            player.ClassCritical = System.Convert.ToInt32(ClassCriticalBox.Value);
             player.CMagic = MagCheck.Checked;
             player.WeaponTriangle = WeaponAdvantage.Checked;
             player.SRankBonus = SRank.Checked;
-            return player;
-        }
+            return player;  }
         #endregion
 
-
         #region EnemyStatConversion
-        private StatVariables GetEnemyVariables()
-        {
-            StatVariables enemy = new StatVariables();
+        private Stats GetEnemyVariables()
+        {   Stats enemy = new Stats();
             enemy.Str = System.Convert.ToInt32(eSTR.Value);
             enemy.Mag = System.Convert.ToInt32(eMAG.Value);
             enemy.Skl = System.Convert.ToInt32(eSKL.Value);
@@ -58,49 +43,62 @@ namespace WindowsFormsApplication1
             enemy.Def = System.Convert.ToInt32(eDEF.Value);
             enemy.Res = System.Convert.ToInt32(eRES.Value);
             enemy.Con = System.Convert.ToInt32(eCON.Value);
-            enemy.SupportBonusHit = System.Convert.ToInt32(eSupportHit.Value);
-            enemy.SupportBonusMT = System.Convert.ToInt32(eSupportMT.Value);
-            enemy.SupportBonusDEF = System.Convert.ToInt32(eSupportDef.Value);
-            enemy.SupportBonusRES = System.Convert.ToInt32(eSupportRes.Value);
-            enemy.SupportBonusEvade = System.Convert.ToInt32(eSupportEvade.Value);
-            enemy.SupportBonusCrit = System.Convert.ToInt32(eSupportCrit.Value);
-            enemy.SupportBonusCritEvade = System.Convert.ToInt32(eSupportCritEvade.Value);
-            enemy.ClassCritical = System.Convert.ToInt32(eClassCriticalBox.Value);
             enemy.CMagic = eMagCheck.Checked;
             enemy.WeaponTriangle = WeaponAdvantage.Checked;
             enemy.SRankBonus = SRank.Checked;
-            return enemy;
-        }
+            return enemy;   }
         #endregion
-
 
         #region PlayerWeaponConversion
         private Weapons GetPlayerWeaponVariables()
-        {
-            Weapons playerweapon = new Weapons();
+        {   Weapons playerweapon = new Weapons();
             playerweapon.WMT = System.Convert.ToInt32(WeaponMT.Value);
             playerweapon.WHIT = System.Convert.ToInt32(WeaponHit.Value);
             playerweapon.WCRIT = System.Convert.ToInt32(WeaponCrit.Value);
             playerweapon.WWEIGHT = System.Convert.ToInt32(WeaponWeight.Value);
             playerweapon.EFFECTIVEMTBONUS = System.Convert.ToInt32(eWeaponMTBonus.Value);
             playerweapon.EFFECTIVE = WeaponAdvantage.Checked;
-            return playerweapon;
-        }
+            return playerweapon;    }
         #endregion
-
 
         #region EnemyWeaponConversion
         private Weapons GetEnemyWeaponVariables()
-        {
-            Weapons enemyweapon = new Weapons();
+        {   Weapons enemyweapon = new Weapons();
             enemyweapon.WMT = System.Convert.ToInt32(eWeaponMT.Value);
             enemyweapon.WHIT = System.Convert.ToInt32(eWeaponHit.Value);
             enemyweapon.WCRIT = System.Convert.ToInt32(eWeaponCrit.Value);
             enemyweapon.WWEIGHT = System.Convert.ToInt32(eWeaponWeight.Value);
             enemyweapon.EFFECTIVEMTBONUS = System.Convert.ToInt32(eWeaponMTBonus.Value);
             enemyweapon.EFFECTIVE = eWeaponAdvantage.Checked;
-            return enemyweapon;
-        }
+            return enemyweapon; }
+        #endregion
+
+        #region Player Support Conversion
+        private Support GetPlayerSupportVariables()
+        {   Support playersupport = new Support();
+            playersupport.SupportBonusHit = System.Convert.ToInt32(SupportHit.Value);
+            playersupport.SupportBonusMT = System.Convert.ToInt32(SupportMT.Value);
+            playersupport.SupportBonusDEF = System.Convert.ToInt32(SupportDef.Value);
+            playersupport.SupportBonusRES = System.Convert.ToInt32(SupportRes.Value);
+            playersupport.SupportBonusEvade = System.Convert.ToInt32(SupportEvade.Value);
+            playersupport.SupportBonusCrit = System.Convert.ToInt32(SupportCrit.Value);
+            playersupport.SupportBonusCritEvade = System.Convert.ToInt32(SupportCritEvade.Value);
+            playersupport.ClassCritical = System.Convert.ToInt32(ClassCriticalBox.Value);
+            return playersupport;   }
+        #endregion
+
+        #region Enemy Support Conversion
+        private Support GetEnemySupportVariables()
+        {   Support enemysupport = new Support();
+            enemysupport.SupportBonusHit = System.Convert.ToInt32(eSupportHit.Value);
+            enemysupport.SupportBonusMT = System.Convert.ToInt32(eSupportMT.Value);
+            enemysupport.SupportBonusDEF = System.Convert.ToInt32(eSupportDef.Value);
+            enemysupport.SupportBonusRES = System.Convert.ToInt32(eSupportRes.Value);
+            enemysupport.SupportBonusEvade = System.Convert.ToInt32(eSupportEvade.Value);
+            enemysupport.SupportBonusCrit = System.Convert.ToInt32(eSupportCrit.Value);
+            enemysupport.SupportBonusCritEvade = System.Convert.ToInt32(eSupportCritEvade.Value);
+            enemysupport.ClassCritical = System.Convert.ToInt32(eClassCriticalBox.Value);
+            return enemysupport;    }
         #endregion
 
 
@@ -110,6 +108,8 @@ namespace WindowsFormsApplication1
             GetEnemyVariables();
             GetPlayerWeaponVariables();
             GetEnemyWeaponVariables();
+            GetPlayerSupportVariables();
+            GetEnemySupportVariables();
         }
     }
 }

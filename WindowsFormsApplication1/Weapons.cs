@@ -14,35 +14,25 @@ namespace WindowsFormsApplication1
         private int wWeight;
         private bool effective = true;
         private int effectiveMTBonus;
+
+        //Getters and Setters
         public int WMT
-        {
-            get { return wMT; }
-            set { wMT = value; }
-        }
+        {get{return wMT;}set{wMT = value;}}
         public int WHIT
-        {
-            get { return wHit; }
-            set { wHit = value; }
-        }
+        {get{return wHit;}set{wHit = value;}}
+
         public int WCRIT
-        {
-            get { return wCrit; }
-            set { wCrit = value; }
-        }
+        {get{return wCrit;}set{wCrit = value;}}
+
         public int WWEIGHT
-        {
-            get { return wWeight; }
-            set { wWeight = value; }
-        }
+        {get{return wWeight;}set{wWeight = value;}}
+
         public bool EFFECTIVE
-        {
-            get { return effective; }
-            set { effective = value; }
-        }
+        {get{return effective;}set{effective = value;}}
+
         public int EFFECTIVEMTBONUS
-        {
-            get { return effectiveMTBonus; }
-            set { effectiveMTBonus = value; }
-        }
+        {get{return effectiveMTBonus;}set{effectiveMTBonus = value;}}
     }
+
+
 }
