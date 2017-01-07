@@ -56,7 +56,7 @@ namespace WindowsFormsApplication1
             playerweapon.WHIT = System.Convert.ToInt32(WeaponHit.Value);
             playerweapon.WCRIT = System.Convert.ToInt32(WeaponCrit.Value);
             playerweapon.WWEIGHT = System.Convert.ToInt32(WeaponWeight.Value);
-            playerweapon.EFFECTIVEMTBONUS = System.Convert.ToInt32(eWeaponMTBonus.Value);
+            playerweapon.EFFECTIVEMTBONUS = System.Convert.ToInt32(WeaponMTBonus.Value);
             playerweapon.EFFECTIVE = Effectiveness.Checked;
             return playerweapon;    }
         #endregion
