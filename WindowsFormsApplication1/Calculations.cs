@@ -64,7 +64,7 @@ namespace WindowsFormsApplication1
 
             #region Damage
             int DamageA = (player.CMagic ? player.Mag : player.Str) + wPlayer.WMT + player.WeaponTriangleMT * (wPlayer.EFFECTIVE ? 2 : 1) + wPlayer.EFFECTIVEMTBONUS + sPlayer.SupportBonusMT;
-            int eDamageA = (enemy.CMagic ? enemy.Mag : player.Str) + wEnemy.WMT + enemy.WeaponTriangleMT * (wEnemy.EFFECTIVE ? 2 : 1) + wEnemy.EFFECTIVEMTBONUS + sEnemy.SupportBonusMT;
+            int eDamageA = (enemy.CMagic ? enemy.Mag : enemy.Str) + wEnemy.WMT + enemy.WeaponTriangleMT * (wEnemy.EFFECTIVE ? 2 : 1) + wEnemy.EFFECTIVEMTBONUS + sEnemy.SupportBonusMT;
             #endregion
 
 
