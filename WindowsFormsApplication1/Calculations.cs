@@ -29,25 +29,11 @@ namespace WindowsFormsApplication1
             //Ally Attack Speed
             int ATKSPD;
             int ATKSPD2 = wPlayer.WWEIGHT - player.Con;
-            if (player.Con >= wPlayer.WWEIGHT)
-            {
-                ATKSPD = player.Spd;
-            }
-            else
-            {
-                ATKSPD = player.Spd - ATKSPD2;
-            }
+            if (player.Con >= wPlayer.WWEIGHT){ATKSPD = player.Spd;}else{ATKSPD = player.Spd - ATKSPD2;}
             //Enemy Attack Speed
             int eATKSPD;
             int eATKSPD2 = wEnemy.WWEIGHT - enemy.Con;
-            if (enemy.Con >= wEnemy.WWEIGHT)
-            {
-                eATKSPD = enemy.Spd;
-            }
-            else
-            {
-                eATKSPD = enemy.Spd - eATKSPD2;
-            }
+            if (enemy.Con >= wEnemy.WWEIGHT){eATKSPD = enemy.Spd;}else{eATKSPD = enemy.Spd - eATKSPD2;}
 
             int EvasionTotal = ATKSPD * 2 + player.Lck + sPlayer.SupportBonusEvade;
             int eEvasionTotal = eATKSPD * 2 + enemy.Lck + sEnemy.SupportBonusEvade;
@@ -63,8 +49,8 @@ namespace WindowsFormsApplication1
 
 
             #region Damage
-            int DamageA = ((player.CMagic ? player.Mag : player.Str) + wPlayer.WMT + (player.WeaponTriangle ? 1 : 0)) * (wPlayer.EFFECTIVE ? 2 : 1) + wPlayer.EFFECTIVEMTBONUS + sPlayer.SupportBonusMT - (enemy.WeaponTriangle ? 1 : 0);
-            int eDamageA = ((enemy.CMagic ? enemy.Mag : enemy.Str) + wEnemy.WMT + (enemy.WeaponTriangle ? 1 : 0)) * (wEnemy.EFFECTIVE ? 2 : 1) + wEnemy.EFFECTIVEMTBONUS + sEnemy.SupportBonusMT - (player.WeaponTriangle ? 1 : 0);
+            int DamageA = (player.CMagic ? player.Mag : player.Str) + (wPlayer.WMT + (player.WeaponTriangle ? 1 : 0) - (enemy.WeaponTriangle ? 1 : 0)) * (wPlayer.EFFECTIVE ? 3 : 1) + wPlayer.EFFECTIVEMTBONUS + sPlayer.SupportBonusMT;
+            int eDamageA = (enemy.CMagic ? enemy.Mag : enemy.Str) + (wEnemy.WMT + (enemy.WeaponTriangle ? 1 : 0) - (player.WeaponTriangle ? 1 : 0)) * (wEnemy.EFFECTIVE ? 3 : 1) + wEnemy.EFFECTIVEMTBONUS + sEnemy.SupportBonusMT;
             #endregion
 
 
@@ -84,8 +70,8 @@ namespace WindowsFormsApplication1
 
 
             #region Damage Calculation
-            result.TotalDamage = DamageA - (player.CMagic ? eResistanceT : eDefenseT) - (enemy.WeaponTriangle ? 1 : 0);
-            result.ETotalDamage = eDamageA - (enemy.CMagic ? ResistanceT : DefenseT) - (player.WeaponTriangle ? 1 : 0);
+            result.TotalDamage = DamageA - (player.CMagic ? eResistanceT : eDefenseT);
+            result.ETotalDamage = eDamageA - (enemy.CMagic ? ResistanceT : DefenseT);
             #endregion
 
 

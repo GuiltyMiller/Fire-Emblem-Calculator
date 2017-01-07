@@ -12,7 +12,7 @@ namespace WindowsFormsApplication1
         private int wHit;
         private int wCrit;
         private int wWeight;
-        private bool effective = true;
+        private bool effective;
         private int effectiveMTBonus;
 
         //Getters and Setters
