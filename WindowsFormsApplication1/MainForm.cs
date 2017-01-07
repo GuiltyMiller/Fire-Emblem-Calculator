@@ -44,8 +44,8 @@ namespace WindowsFormsApplication1
             enemy.Res = System.Convert.ToInt32(eRES.Value);
             enemy.Con = System.Convert.ToInt32(eCON.Value);
             enemy.CMagic = eMagCheck.Checked;
-            enemy.WeaponTriangle = WeaponAdvantage.Checked;
-            enemy.SRankBonus = SRank.Checked;
+            enemy.WeaponTriangle = eWeaponAdvantage.Checked;
+            enemy.SRankBonus = eSRank.Checked;
             return enemy;   }
         #endregion
 
@@ -57,7 +57,7 @@ namespace WindowsFormsApplication1
             playerweapon.WCRIT = System.Convert.ToInt32(WeaponCrit.Value);
             playerweapon.WWEIGHT = System.Convert.ToInt32(WeaponWeight.Value);
             playerweapon.EFFECTIVEMTBONUS = System.Convert.ToInt32(eWeaponMTBonus.Value);
-            playerweapon.EFFECTIVE = WeaponAdvantage.Checked;
+            playerweapon.EFFECTIVE = Effectiveness.Checked;
             return playerweapon;    }
         #endregion
 
@@ -69,7 +69,7 @@ namespace WindowsFormsApplication1
             enemyweapon.WCRIT = System.Convert.ToInt32(eWeaponCrit.Value);
             enemyweapon.WWEIGHT = System.Convert.ToInt32(eWeaponWeight.Value);
             enemyweapon.EFFECTIVEMTBONUS = System.Convert.ToInt32(eWeaponMTBonus.Value);
-            enemyweapon.EFFECTIVE = eWeaponAdvantage.Checked;
+            enemyweapon.EFFECTIVE = eEffectiveness.Checked;
             return enemyweapon; }
         #endregion
 

@@ -18,7 +18,6 @@ namespace WindowsFormsApplication1
         //Getters and Setters
         public int WMT
         {get{return wMT;}set{wMT = value;}}
-        
         public int WHIT
         {get{return wHit;}set{wHit = value;}}
 
