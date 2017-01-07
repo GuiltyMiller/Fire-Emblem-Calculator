@@ -49,8 +49,8 @@ namespace WindowsFormsApplication1
                 eATKSPD = enemy.Spd - eATKSPD2;
             }
 
-            int EvasionTotal = ATKSPD * 2 + player.Lck + sPlayer.SupportBonusHit;
-            int eEvasionTotal = eATKSPD * 2 + enemy.Lck + sEnemy.SupportBonusHit;
+            int EvasionTotal = ATKSPD * 2 + player.Lck + sPlayer.SupportBonusEvade;
+            int eEvasionTotal = eATKSPD * 2 + enemy.Lck + sEnemy.SupportBonusEvade;
             #endregion
 
             #region Accuracy
@@ -63,8 +63,8 @@ namespace WindowsFormsApplication1
 
 
             #region Damage
-            int DamageA = (player.CMagic ? player.Mag : player.Str) + wPlayer.WMT + player.WeaponTriangleMT * (wPlayer.EFFECTIVE ? 2 : 1) + wPlayer.EFFECTIVEMTBONUS + sPlayer.SupportBonusMT;
-            int eDamageA = (enemy.CMagic ? enemy.Mag : enemy.Str) + wEnemy.WMT + enemy.WeaponTriangleMT * (wEnemy.EFFECTIVE ? 2 : 1) + wEnemy.EFFECTIVEMTBONUS + sEnemy.SupportBonusMT;
+            int DamageA = ((player.CMagic ? player.Mag : player.Str) + wPlayer.WMT + (player.WeaponTriangle ? 1 : 0)) * (wPlayer.EFFECTIVE ? 2 : 1) + wPlayer.EFFECTIVEMTBONUS + sPlayer.SupportBonusMT - (enemy.WeaponTriangle ? 1 : 0);
+            int eDamageA = ((enemy.CMagic ? enemy.Mag : enemy.Str) + wEnemy.WMT + (enemy.WeaponTriangle ? 1 : 0)) * (wEnemy.EFFECTIVE ? 2 : 1) + wEnemy.EFFECTIVEMTBONUS + sEnemy.SupportBonusMT - (player.WeaponTriangle ? 1 : 0);
             #endregion
 
 
@@ -84,8 +84,8 @@ namespace WindowsFormsApplication1
 
 
             #region Damage Calculation
-            result.TotalDamage = DamageA - (player.CMagic ? eResistanceT : eDefenseT) - enemy.WeaponTriangleMT;
-            result.ETotalDamage = eDamageA - (enemy.CMagic ? ResistanceT : DefenseT) - player.WeaponTriangleMT;
+            result.TotalDamage = DamageA - (player.CMagic ? eResistanceT : eDefenseT) - (enemy.WeaponTriangle ? 1 : 0);
+            result.ETotalDamage = eDamageA - (enemy.CMagic ? ResistanceT : DefenseT) - (player.WeaponTriangle ? 1 : 0);
             #endregion
 
 
