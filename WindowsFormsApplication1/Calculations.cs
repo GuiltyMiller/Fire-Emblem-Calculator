@@ -9,82 +9,62 @@ namespace WindowsFormsApplication1
     class Calculations
     {
 
-//If S Rank Bonus is true, add to hit/crit.
-//If WeaponTriangle is true, add 15 to Accuracy and 1 to damage.
-//If CMagic is true, change the calculations so it uses MAG instead of STR.
-//Return Value to Mainform and replace read-only textboxes' text to the result. (Ally/Enemy Damage/Hit/Crit)
-         /*
+        //If S Rank Bonus is true, add to hit/crit.
+        //If (player.WeaponTriangle ? 15 : 0) is true, add 15 to Accuracy and 1 to damage.
+        //If CMagic is true, change the calculations so it uses MAG instead of STR.
+        //Return Value to Mainform and replace read-only textboxes' text to the result. (Ally/Enemy Damage/Hit/Crit)
+
+        public CalculationsResults getCalculationResults(Stats player, Stats enemy, Weapons wPlayer, Weapons wEnemy, Support sPlayer, Support sEnemy)
+        {
+            CalculationsResults result = new CalculationsResults();
 
             #region Ally Hit Calcuations
-            int HitTotal = wHit + Skl * 2 + Lck / 2 + SupportBonusHit + SRankBonus;
+            int HitTotal = wPlayer.WHIT + player.Skl * 2 + player.Lck / 2 + sPlayer.SupportBonusHit + (player.SRankBonus ? 5 : 0);
             #endregion
             #region Enemy Hit Calculations
-            int eHitTotal = ewHit + eSkl * 2 + eLck / 2 + eSupportBonusHit + eSRankBonus;
+            int eHitTotal = wEnemy.WHIT + enemy.Skl * 2 + enemy.Lck / 2 + sEnemy.SupportBonusHit + (enemy.SRankBonus ? 5 : 0);
             #endregion
 
             #region Evasion
             //Ally Attack Speed
             int ATKSPD;
-            int ATKSPD2 = wWeight - Con;
-            if (Con >= wWeight)
+            int ATKSPD2 = wPlayer.WWEIGHT - player.Con;
+            if (player.Con >= wPlayer.WWEIGHT)
             {
-                ATKSPD = Spd;
+                ATKSPD = player.Spd;
             }
             else
             {
-                ATKSPD = Spd - ATKSPD2;
+                ATKSPD = player.Spd - ATKSPD2;
             }
             //Enemy Attack Speed
             int eATKSPD;
-            int eATKSPD2 = ewWeight - eCon;
-            if (Con >= ewWeight)
+            int eATKSPD2 = wEnemy.WWEIGHT - enemy.Con;
+            if (enemy.Con >= wEnemy.WWEIGHT)
             {
-                eATKSPD = eSpd;
+                eATKSPD = enemy.Spd;
             }
             else
             {
-                eATKSPD = eSpd - eATKSPD2;
+                eATKSPD = enemy.Spd - eATKSPD2;
             }
 
-            int EvasionTotal = ATKSPD * 2 + Lck + SupportBonusHit;
-            int eEvasionTotal = eATKSPD * 2 + eLck + eSupportBonusHit;
+            int EvasionTotal = ATKSPD * 2 + player.Lck + sPlayer.SupportBonusHit;
+            int eEvasionTotal = eATKSPD * 2 + enemy.Lck + sEnemy.SupportBonusHit;
             #endregion
 
             #region Accuracy
-            int Accuracy;
-            int eAccuracy;
-            Accuracy = HitTotal - eEvasionTotal + SupportBonusHit + WeaponTriangle - eWeaponTriangle;
-            eAccuracy = eHitTotal - EvasionTotal + eSupportBonusHit + eWeaponTriangle - WeaponTriangle;
-            string VarHit = "0";
-            VarHit = Accuracy.ToString();
-            Hit.Text = VarHit;
-            string eVarHit = "0";
-            eVarHit = eAccuracy.ToString();
-            eHit.Text = eVarHit;
+            result.Accuracy = HitTotal - eEvasionTotal + sPlayer.SupportBonusHit + (player.WeaponTriangle ? 15 : 0) - (enemy.WeaponTriangle ? 15 : 0);
+            result.EAccuracy = eHitTotal - EvasionTotal + sEnemy.SupportBonusHit + (enemy.WeaponTriangle ? 15 : 0) - (player.WeaponTriangle ? 15 : 0);
+
             #endregion
 
 
-   
+
 
             #region Damage
-            int DamageA;
-            int eDamageA;
-            if (cMagic == 1)
-            {
-                DamageA = Mag + wMT + WeaponTriangleMT * Effective + EffectiveMTBonus + SupportBonusMT;
-            }
-            else
-            {
-                DamageA = Str + wMT + WeaponTriangleMT * Effective + EffectiveMTBonus + SupportBonusMT;
-            }
-            if (ceMagic == 1)
-            {
-                eDamageA = eMag + ewMT + eWeaponTriangleMT * eEffective + eEffectiveMTBonus + eSupportBonusMT;
-            }
-            else
-            {
-                eDamageA = eStr + ewMT + eWeaponTriangleMT * eEffective + eEffectiveMTBonus + eSupportBonusMT;
-            }
+            int DamageA = (player.CMagic ? player.Mag : player.Str) + wPlayer.WMT + player.WeaponTriangleMT * (wPlayer.EFFECTIVE ? 2 : 1) + wPlayer.EFFECTIVEMTBONUS + sPlayer.SupportBonusMT;
+            int eDamageA = (enemy.CMagic ? enemy.Mag : player.Str) + wEnemy.WMT + enemy.WeaponTriangleMT * (wEnemy.EFFECTIVE ? 2 : 1) + wEnemy.EFFECTIVEMTBONUS + sEnemy.SupportBonusMT;
             #endregion
 
 
@@ -92,10 +72,10 @@ namespace WindowsFormsApplication1
 
 
             #region Defense
-            int DefenseT = Def + SupportBonusDEF;
-            int eDefenseT = eDef + eSupportBonusDEF;
-            int ResistanceT = Res + SupportBonusDEF;
-            int eResistanceT = eRes + eSupportBonusDEF;
+            int DefenseT = player.Def + sPlayer.SupportBonusDEF;
+            int eDefenseT = enemy.Def + sEnemy.SupportBonusDEF;
+            int ResistanceT = player.Res + sPlayer.SupportBonusDEF;
+            int eResistanceT = enemy.Res + sEnemy.SupportBonusDEF;
             #endregion
 
 
@@ -104,28 +84,8 @@ namespace WindowsFormsApplication1
 
 
             #region Damage Calculation
-            int TotalDamage;
-            int eTotalDamage;
-            if (cMagic == 1)
-            {
-                TotalDamage = DamageA - eResistanceT - eWeaponTriangleMT;
-            }
-            else
-            {
-                TotalDamage = DamageA - eDefenseT - eWeaponTriangleMT;
-            }
-            if (ceMagic == 1)
-            {
-                eTotalDamage = eDamageA - ResistanceT - WeaponTriangleMT;
-            }
-            else
-            {
-                eTotalDamage = eDamageA - DefenseT - WeaponTriangleMT;
-            }
-            string VarDam = TotalDamage.ToString();
-            Damage.Text = VarDam;
-            string eVarDam = eTotalDamage.ToString();
-            eDamage.Text = eVarDam;
+            result.TotalDamage = DamageA - (player.CMagic ? eResistanceT : eDefenseT) - enemy.WeaponTriangleMT;
+            result.ETotalDamage = eDamageA - (enemy.CMagic ? ResistanceT : DefenseT) - player.WeaponTriangleMT;
             #endregion
 
 
@@ -133,16 +93,13 @@ namespace WindowsFormsApplication1
 
 
             #region Critical Calculations
-            int CritA = wCrit + Skl / 2 + SupportBonusCrit + eClassCritical + SRankBonus;
-            int eCritA = ewCrit + eSkl / 2 + eSupportBonusCrit + eClassCritical + eSRankBonus;
-            int CritEvade = Lck + SupportBonusCritEvade;
-            int eCritEvade = eLck + eSupportBonusCritEvade;
-            int CritTotal = CritA - eCritEvade;
-            int eCritTotal = eCritA - CritEvade;
-            string VarCrit = CritTotal.ToString();
-            Crit.Text = VarCrit;
-            string eVarCrit = eCritTotal.ToString();
-            eCrit.Text = eVarCrit;
+            int CritA = wPlayer.WCRIT + player.Skl / 2 + sPlayer.SupportBonusCrit + sPlayer.ClassCritical + (player.SRankBonus ? 5 : 0);
+            int eCritA = wEnemy.WCRIT + enemy.Skl / 2 + sEnemy.SupportBonusCrit + sEnemy.ClassCritical + (enemy.SRankBonus ? 5 : 0);
+            int CritEvade = player.Lck + sPlayer.SupportBonusCritEvade;
+            int eCritEvade = enemy.Lck + sEnemy.SupportBonusCritEvade;
+            result.CritTotal = CritA - eCritEvade;
+            result.ECritTotal = eCritA - CritEvade;
+
             #endregion
 
 
@@ -150,24 +107,11 @@ namespace WindowsFormsApplication1
 
 
             #region Double Attack Calculation
-            int DoubleAtk = Spd - eSpd;
-            int eDoubleAtk = eSpd - Spd;
-            if (DoubleAtk >= 4)
-            {
-                DoubleAttack.Text = "2x";
-            }
-            else
-            {
-                DoubleAttack.Text = "1x";
-            }
-            if (eDoubleAtk >= 4)
-            {
-                eDoubleAttack.Text = "2x";
-            }
-            else
-            {
-                eDoubleAttack.Text = "1x";
-            }
-            #endregion */
+            result.DoubleAttack = player.Spd - enemy.Spd;
+            result.EDoubleAttack = enemy.Spd - player.Spd;
+            #endregion
+            return result;
+        }
     }
+}
 

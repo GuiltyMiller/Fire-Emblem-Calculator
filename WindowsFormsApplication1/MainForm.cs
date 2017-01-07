@@ -101,15 +101,30 @@ namespace WindowsFormsApplication1
             return enemysupport;    }
         #endregion
 
-
         private void button1_Click(object sender, EventArgs e)
         {
-            GetPlayerVariables();
-            GetEnemyVariables();
-            GetPlayerWeaponVariables();
-            GetEnemyWeaponVariables();
-            GetPlayerSupportVariables();
-            GetEnemySupportVariables();
+            Stats player = GetPlayerVariables();
+            Stats enemy = GetEnemyVariables();
+            Weapons wPlayer = GetPlayerWeaponVariables();
+            Weapons wEnemy = GetEnemyWeaponVariables();
+            Support sPlayer = GetPlayerSupportVariables();
+            Support sEnemy = GetEnemySupportVariables();
+            Calculations calculations = new Calculations();
+            CalculationsResults result = calculations.getCalculationResults(player, enemy, wPlayer, wEnemy, sPlayer, sEnemy);
+            if (result.DoubleAttack >= 4){DoubleAttack.Text = "2x";}else{DoubleAttack.Text = "1x";}
+            if (result.EDoubleAttack >= 4) { eDoubleAttack.Text = "2x"; } else { eDoubleAttack.Text = "1x"; }
+            string varHit = result.Accuracy.ToString();
+            Hit.Text = varHit;
+            string eVarHit = result.EAccuracy.ToString();
+            eHit.Text = eVarHit;
+            string varCrit = result.CritTotal.ToString();
+            Crit.Text = varCrit;
+            string evarCrit = result.ECritTotal.ToString();
+            eCrit.Text = evarCrit;
+            string varDam = result.TotalDamage.ToString();
+            Damage.Text = varDam;
+            string evarDam = result.ETotalDamage.ToString();
+            eDamage.Text = evarDam;
         }
     }
 }
