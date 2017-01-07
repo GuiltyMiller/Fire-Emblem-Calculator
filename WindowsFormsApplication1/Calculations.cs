@@ -9,6 +9,11 @@ namespace WindowsFormsApplication1
     class Calculations
     {
 
+//If S Rank Bonus is true, add to hit/crit.
+//If WeaponTriangle is true, add 15 to Accuracy and 1 to damage.
+//If CMagic is true, change the calculations so it uses MAG instead of STR.
+//Return Value to Mainform and replace read-only textboxes' text to the result. (Ally/Enemy Damage/Hit/Crit)
+
             #region Ally Hit Calcuations
             int HitTotal = wHit + Skl * 2 + Lck / 2 + SupportBonusHit + SRankBonus;
             #endregion
