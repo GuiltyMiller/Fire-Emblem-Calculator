@@ -9,16 +9,12 @@ namespace WindowsFormsApplication1
     class Calculations
     {
 
-
-        private HitCalculations()
-        {
             #region Ally Hit Calcuations
             int HitTotal = wHit + Skl * 2 + Lck / 2 + SupportBonusHit + SRankBonus;
             #endregion
             #region Enemy Hit Calculations
             int eHitTotal = ewHit + eSkl * 2 + eLck / 2 + eSupportBonusHit + eSRankBonus;
             #endregion
-        }
 
             #region Evasion
             //Ally Attack Speed
